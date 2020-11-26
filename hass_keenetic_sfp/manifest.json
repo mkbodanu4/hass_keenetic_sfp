@@ -1,0 +1,10 @@
+{
+  "domain": "hass_keenetic_sfp",
+  "name": "Home Assistant integration that adding sensors with data collected from SFP module connected to Keenetic Giga (KN-1010) router",
+  "documentation": "https://github.com/mkbodanu4/hass_keenetic_sfp",
+  "requirements": ["paramiko>=2.7.2"],
+  "dependencies": [],
+  "codeowners": [
+    "@mkbodanu4"
+  ]
+}

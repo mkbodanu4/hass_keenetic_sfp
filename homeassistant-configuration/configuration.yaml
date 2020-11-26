@@ -1,0 +1,111 @@
+sensor:
+  - platform: hass_keenetic_sfp
+    scan_interval: 30
+    name: "Keenetic SFP details"
+    hostname: "192.168.1.1"
+    port: 22
+    username: !secret hass_keenetic_sfp_username
+    password: !secret hass_keenetic_sfp_password
+
+  - platform: template
+    sensors:
+      keenetic_sfp_type:
+        friendly_name: "Type"
+        value_template: '{{ states.sensor.keenetic_sfp_details.attributes["Type"] }}'
+      keenetic_sfp_connector:
+        friendly_name: "Connector"
+        value_template: '{{ states.sensor.keenetic_sfp_details.attributes["Connector"] }}'
+      keenetic_sfp_transceiver:
+        friendly_name: "Transceiver"
+        value_template: '{{ states.sensor.keenetic_sfp_details.attributes["Transceiver"] }}'
+      keenetic_sfp_link_length:
+        friendly_name: "Fibre 9um link length (m)"
+        value_template: '{{ states.sensor.keenetic_sfp_details.attributes["Fibre 9um link length (m)"] }}'
+      keenetic_sfp_laser_wave_length:
+        friendly_name: "Laser wave length (nm)"
+        value_template: '{{ states.sensor.keenetic_sfp_details.attributes["Laser wave length (nm)"] }}'
+      keenetic_sfp_bitrate:
+        friendly_name: "Bitrate (Mbaud)"
+        value_template: '{{ states.sensor.keenetic_sfp_details.attributes["Bitrate (Mbaud)"] }}'
+      keenetic_sfp_encoding:
+        friendly_name: "Encoding"
+        value_template: '{{ states.sensor.keenetic_sfp_details.attributes["Encoding"] }}'
+      keenetic_sfp_vendor_oui:
+        friendly_name: "Vendor OUI"
+        value_template: '{{ states.sensor.keenetic_sfp_details.attributes["Vendor OUI"] }}'
+      keenetic_sfp_vendor_name:
+        friendly_name: "Vendor Name"
+        value_template: '{{ states.sensor.keenetic_sfp_details.attributes["Vendor Name"] }}'
+      keenetic_sfp_vendor_pn:
+        friendly_name: "Vendor PN"
+        value_template: '{{ states.sensor.keenetic_sfp_details.attributes["Vendor PN"] }}'
+      keenetic_sfp_vendor_sn:
+        friendly_name: "Vendor SN"
+        value_template: '{{ states.sensor.keenetic_sfp_details.attributes["Vendor SN"] }}'
+      keenetic_sfp_date:
+        friendly_name: "Date"
+        value_template: '{{ states.sensor.keenetic_sfp_details.attributes["Date"] }}'
+      keenetic_sfp_dmi_diagnostic:
+        friendly_name: "DMI Diagnostic"
+        value_template: '{{ states.sensor.keenetic_sfp_details.attributes["DMI Diagnostic"] }}'
+      keenetic_sfp_cc_base:
+        friendly_name: "CC Base"
+        value_template: '{{ states.sensor.keenetic_sfp_details.attributes["CC Base"] }}'
+      keenetic_sfp_cc_ext:
+        friendly_name: "CC Ext"
+        value_template: '{{ states.sensor.keenetic_sfp_details.attributes["CC Ext"] }}'
+      keenetic_sfp_temp:
+        friendly_name: "Temp"
+        value_template: '{{ states.sensor.keenetic_sfp_details.attributes["Temp (C)"] }}'
+        device_class: 'temperature'
+        unit_of_measurement: '°C'
+      keenetic_sfp_vcc:
+        friendly_name: "VCC"
+        value_template: '{{ states.sensor.keenetic_sfp_details.attributes["VCC (V)"] }}'
+        device_class: 'voltage'
+        unit_of_measurement: 'V'
+      keenetic_sfp_tx_bias:
+        friendly_name: "TX bias"
+        value_template: '{{ states.sensor.keenetic_sfp_details.attributes["TX bias (uA)"] }}'
+        device_class: 'current'
+        unit_of_measurement: 'uA'
+      keenetic_sfp_tx_power:
+        friendly_name: "TX power"
+        value_template: '{{ states.sensor.keenetic_sfp_details.attributes["TX power (mW)"] }}'
+        device_class: 'power'
+        unit_of_measurement: 'mW'
+      keenetic_sfp_tx_power_dbm:
+        friendly_name: "TX power"
+        value_template: >
+          {% if states.sensor.keenetic_sfp_details.attributes["TX power (mW)"] %}
+            {{ ( 10 * log( states.sensor.keenetic_sfp_details.attributes["TX power (mW)"] | float , 10 ) ) | round(2) }}
+          {% else %}
+            0
+          {% endif %}
+        device_class: 'signal_strength'
+        unit_of_measurement: 'dBm'
+      keenetic_sfp_rx_power:
+        friendly_name: "RX power"
+        value_template: '{{ states.sensor.keenetic_sfp_details.attributes["RX power (mW)"] }}'
+        device_class: 'power'
+        unit_of_measurement: 'mW'
+      keenetic_sfp_rx_power_dbm:
+        friendly_name: "RX power"
+        value_template: >
+          {% if states.sensor.keenetic_sfp_details.attributes["TX power (mW)"] %}
+            {{ ( 10 * log( states.sensor.keenetic_sfp_details.attributes["RX power (mW)"] | float, 10 ) ) | round(2) }}
+          {% else %}
+            0
+          {% endif %}
+        device_class: 'signal_strength'
+        unit_of_measurement: 'dBm'
+      keenetic_sfp_laser_temp:
+        friendly_name: "Laser temp"
+        value_template: '{{ states.sensor.keenetic_sfp_details.attributes["Laser temp (C)"] }}'
+        device_class: 'temperature'
+        unit_of_measurement: '°C'
+      keenetic_sfp_tec_current:
+        friendly_name: "TEC current"
+        value_template: '{{ states.sensor.keenetic_sfp_details.attributes["TEC current (mA)"] }}'
+        device_class: 'current'
+        unit_of_measurement: 'mA'
