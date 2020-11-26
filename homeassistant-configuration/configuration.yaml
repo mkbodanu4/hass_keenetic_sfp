@@ -1,3 +1,23 @@
+history:
+  exclude:
+    entities:
+      - sensor.keenetic_sfp_details
+      - sensor.keenetic_sfp_type
+      - sensor.keenetic_sfp_connector
+      - sensor.keenetic_sfp_transceiver
+      - sensor.keenetic_sfp_link_length
+      - sensor.keenetic_sfp_laser_wave_length
+      - sensor.keenetic_sfp_bitrate
+      - sensor.keenetic_sfp_encoding
+      - sensor.keenetic_sfp_vendor_oui
+      - sensor.keenetic_sfp_vendor_name
+      - sensor.keenetic_sfp_vendor_pn
+      - sensor.keenetic_sfp_vendor_sn
+      - sensor.keenetic_sfp_date
+      - sensor.keenetic_sfp_dmi_diagnostic
+      - sensor.keenetic_sfp_cc_base
+      - sensor.keenetic_sfp_cc_ext
+
 sensor:
   - platform: hass_keenetic_sfp
     scan_interval: 30
