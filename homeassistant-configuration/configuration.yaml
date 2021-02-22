@@ -98,7 +98,7 @@ sensor:
         friendly_name: "TX power"
         value_template: >
           {% if states.sensor.keenetic_sfp_details.attributes["TX power (mW)"] %}
-            {{ ( 10 * log( states.sensor.keenetic_sfp_details.attributes["TX power (mW)"] | float , 10 ) ) | round(2) }}
+            {{ ( 10 * log( states.sensor.keenetic_sfp_details.attributes["TX power (mW)"] | float , 10 ) ) | round(0) }}
           {% else %}
             0
           {% endif %}
@@ -113,7 +113,7 @@ sensor:
         friendly_name: "RX power"
         value_template: >
           {% if states.sensor.keenetic_sfp_details.attributes["TX power (mW)"] %}
-            {{ ( 10 * log( states.sensor.keenetic_sfp_details.attributes["RX power (mW)"] | float, 10 ) ) | round(2) }}
+            {{ ( 10 * log( states.sensor.keenetic_sfp_details.attributes["RX power (mW)"] | float, 10 ) ) | round(0) }}
           {% else %}
             0
           {% endif %}
